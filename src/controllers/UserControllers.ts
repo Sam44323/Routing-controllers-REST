@@ -1,4 +1,11 @@
-import { JsonController, Get, Param, Body, Post } from "routing-controllers";
+import {
+  JsonController,
+  Get,
+  Param,
+  Body,
+  Post,
+  Put,
+} from "routing-controllers";
 import { DATA } from "../utils/data";
 
 interface User {
@@ -43,6 +50,24 @@ export class UserControllers {
     return {
       message: "Added a new user",
       person: user,
+    };
+  }
+
+  @Put("/update-user/:id")
+  put(@Body() user: User, @Param("id") id: number) {
+    let person = DATA.find((person) => person.id === parseInt(id));
+    const index = DATA.findIndex((person) => person.id === parseInt(id));
+    const { name, occupation, tagline } = user;
+    person = {
+      id: person!.id,
+      name: name ? name : person!.name,
+      occupation: occupation ? occupation : person!.occupation,
+      tagline: tagline ? tagline : person!.tagline,
+    };
+    DATA[index] = person;
+    return {
+      message: "Updated the person",
+      person: DATA[index],
     };
   }
 }
