@@ -3,6 +3,7 @@ import { UserControllers } from "./controllers/UserControllers";
 import { config } from "dotenv";
 import { join } from "path";
 
+// creating the path for env
 config({
   path: join(__dirname, "..", ".env"),
 });
