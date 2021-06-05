@@ -7,8 +7,6 @@ config({
   path: join(__dirname, "..", ".env"),
 });
 
-console.log(process.env.PORT);
-
 const app = createExpressServer({
   controllers: [UserControllers],
 });
