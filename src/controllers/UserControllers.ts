@@ -14,6 +14,7 @@ export class UserControllers {
   @Get("/users/:id")
   getOne(@Param("id") id: number) {
     id = parseInt(id);
+    // finding a particular person
     const person = data.data.find((person) => person.id === id);
     if (person) {
       return {
