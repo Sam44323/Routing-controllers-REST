@@ -2,6 +2,7 @@ import { createExpressServer } from "routing-controllers";
 import { UserControllers } from "./controllers/UserControllers";
 import { config } from "dotenv";
 import { join } from "path";
+import "reflect-metadata";
 
 config({
   path: join(__dirname, "..", ".env"),
