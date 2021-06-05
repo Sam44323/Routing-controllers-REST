@@ -96,7 +96,6 @@ export class UserControllers {
   @Delete("/remove/:id")
   delete(@Param("id") id: number) {
     DATA = DATA.filter((person) => person.id !== parseInt(id));
-    console.log(DATA);
     return {
       message: "Removed the data",
     };
