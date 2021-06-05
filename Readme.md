@@ -12,7 +12,7 @@
 - concurrently
 - typescript
 - dotenv
-- nodemon()
+- nodemon
 - reflect-metadata
 - class-transformer
 - class-validator
