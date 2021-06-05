@@ -1,5 +1,11 @@
-import { JsonController, Get, Param, Body } from "routing-controllers";
-import data from "../utils/data.json";
+import { JsonController, Get, Param, Body, Post } from "routing-controllers";
+import { DATA } from "../utils/data";
+
+interface User {
+  name: string;
+  occupation: string;
+  tagline: string;
+}
 
 @JsonController()
 export class UserControllers {
@@ -7,7 +13,7 @@ export class UserControllers {
   getAll() {
     return {
       message: "All the users",
-      persons: data.data,
+      persons: DATA,
     };
   }
 
@@ -15,7 +21,7 @@ export class UserControllers {
   getOne(@Param("id") id: number) {
     id = parseInt(id);
     // finding a particular person
-    const person = data.data.find((person) => person.id === id);
+    const person = DATA.find((person) => person.id === id);
     if (person) {
       return {
         message: "Found",
@@ -26,5 +32,17 @@ export class UserControllers {
         message: "Person not found!",
       };
     }
+  }
+
+  @Post("/add-user")
+  post(@Body() user: User) {
+    DATA.push({
+      ...user,
+      id: Math.random(),
+    });
+    return {
+      message: "Added a new user",
+      person: user,
+    };
   }
 }
